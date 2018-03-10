@@ -18,6 +18,7 @@ public class Api {
     }
 
     public static String getBackdropPath(String backdropPath) {
+        
         return BASR_BACKDROP_PATH + backdropPath;
     }
 }
