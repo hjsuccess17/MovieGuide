@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.esoxjem.movieguide.favorites.FavoritesInteractor;
 import com.esoxjem.movieguide.listing.sorting.SortingOptionStore;
+import com.esoxjem.movieguide.network.TmdbTvWebService;
 import com.esoxjem.movieguide.network.TmdbWebService;
 
 import dagger.Module;
@@ -27,6 +28,15 @@ public class ListingModule {
         Log.d("DAGGER", "provideMovieListingInteractor()");
         return new MoviesListingInteractorImpl(favoritesInteractor, tmdbWebService, sortingOptionStore);
     }
+
+    /*@Provides
+    MoviesListingInteractor provideMovieListingInteractor(FavoritesInteractor favoritesInteractor,
+                                                          TmdbWebService tmdbWebService,
+                                                          TmdbTvWebService tmdbTvWebService,
+                                                          SortingOptionStore sortingOptionStore) {
+        Log.d("DAGGER", "provideMovieListingInteractor()");
+        return new MoviesListingInteractorImpl(favoritesInteractor, tmdbWebService, tmdbTvWebService, sortingOptionStore);
+    }*/
 
     @Provides
     MoviesListingPresenter provideMovieListingPresenter(MoviesListingInteractor interactor) {

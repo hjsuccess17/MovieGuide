@@ -20,7 +20,12 @@ import com.esoxjem.movieguide.BaseApplication;
 import com.esoxjem.movieguide.Constants;
 import com.esoxjem.movieguide.Movie;
 import com.esoxjem.movieguide.R;
+import com.esoxjem.movieguide.favorites.FavoritesInteractor;
+import com.esoxjem.movieguide.favorites.FavoritesInteractorImpl;
+import com.esoxjem.movieguide.favorites.FavoritesStore;
 import com.esoxjem.movieguide.listing.sorting.SortingDialogFragment;
+import com.esoxjem.movieguide.listing.sorting.SortingOptionStore;
+import com.esoxjem.movieguide.network.NetworkModule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,8 +64,16 @@ public class MoviesListingFragment extends Fragment implements MoviesListingView
         setHasOptionsMenu(true);
         setRetainInstance(true);
         Log.d("DAGGER", "MoviesListingFragment-createListingComponent().inject()");
+        //주입
         ((BaseApplication) getActivity().getApplication()).createListingComponent().inject(this);
 
+        //주입을 하지 않는 경우
+//        FavoritesInteractor favoritesInteractor = new FavoritesInteractorImpl(new FavoritesStore(getContext()));
+//        NetworkModule networkModule = new NetworkModule();
+//        MoviesListingInteractorImpl moviesListingInteractor = new MoviesListingInteractorImpl(favoritesInteractor, networkModule.tmdbWebService(), new SortingOptionStore(getContext()));
+//        moviesPresenter = new MoviesListingPresenterImpl(moviesListingInteractor);
+
+        //테스트 데이터 주입
 //        ((BaseApplication) getActivity().getApplication()).createTestListingComponent().inject(this);
 
     }

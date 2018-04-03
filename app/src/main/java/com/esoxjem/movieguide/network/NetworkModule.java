@@ -61,4 +61,9 @@ public class NetworkModule {
         return retrofit.create(TmdbWebService.class);
     }
 
+    /*@Singleton
+    @Provides
+    TmdbTvWebService tmdbTvWebService(Retrofit retrofit) {
+        return retrofit.create(TmdbTvWebService.class);
+    }*/
 }
