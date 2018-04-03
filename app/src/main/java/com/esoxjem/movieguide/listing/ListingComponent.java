@@ -12,7 +12,7 @@ import dagger.Subcomponent;
 @Subcomponent(modules = {ListingModule.class, SortingModule.class})
 public interface ListingComponent
 {
-    MoviesListingFragment inject(MoviesListingFragment fragment);
+    void inject(MoviesListingFragment fragment);
 
     SortingDialogFragment inject(SortingDialogFragment fragment);
 }

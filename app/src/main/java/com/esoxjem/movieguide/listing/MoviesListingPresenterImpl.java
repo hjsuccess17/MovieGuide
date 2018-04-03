@@ -1,12 +1,16 @@
 package com.esoxjem.movieguide.listing;
 
+import android.util.Log;
+
 import com.esoxjem.movieguide.Movie;
 import com.esoxjem.movieguide.util.RxUtils;
 
 import java.util.List;
 
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -18,6 +22,7 @@ class MoviesListingPresenterImpl implements MoviesListingPresenter {
     private Disposable fetchSubscription;
 
     MoviesListingPresenterImpl(MoviesListingInteractor interactor) {
+        Log.d("DAGGER", "MoviesListingPresenterImpl()");
         moviesInteractor = interactor;
     }
 
@@ -36,10 +41,29 @@ class MoviesListingPresenterImpl implements MoviesListingPresenter {
     @Override
     public void displayMovies() {
         showLoading();
+        //ramda
         fetchSubscription = moviesInteractor.fetchMovies()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onMovieFetchSuccess, this::onMovieFetchFailed);
+
+        //java
+        /*fetchSubscription = moviesInteractor.fetchMovies()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<Movie>>() {
+                    @Override
+                    public void accept(List<Movie> movies) throws Exception {
+                        onMovieFetchSuccess(movies);
+                    }
+
+
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        onMovieFetchFailed(throwable);
+                    }
+                });*/
     }
 
     private void showLoading() {

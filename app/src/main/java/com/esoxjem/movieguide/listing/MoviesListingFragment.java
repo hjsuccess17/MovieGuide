@@ -10,6 +10,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,7 +58,11 @@ public class MoviesListingFragment extends Fragment implements MoviesListingView
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         setRetainInstance(true);
+        Log.d("DAGGER", "MoviesListingFragment-createListingComponent().inject()");
         ((BaseApplication) getActivity().getApplication()).createListingComponent().inject(this);
+
+//        ((BaseApplication) getActivity().getApplication()).createTestListingComponent().inject(this);
+
     }
 
     @Override
