@@ -22,7 +22,7 @@ class MoviesListingPresenterImpl implements MoviesListingPresenter {
     private Disposable fetchSubscription;
 
     MoviesListingPresenterImpl(MoviesListingInteractor interactor) {
-        Log.d("DAGGER", "MoviesListingPresenterImpl()");
+//        Log.d("DAGGER", "MoviesListingPresenterImpl()");
         moviesInteractor = interactor;
     }
 

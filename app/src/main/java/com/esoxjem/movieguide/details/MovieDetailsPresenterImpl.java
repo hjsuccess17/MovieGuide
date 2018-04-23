@@ -109,4 +109,10 @@ class MovieDetailsPresenterImpl implements MovieDetailsPresenter {
             }
         }
     }
+
+    public boolean checkSize(List<Video> videos) {
+        return videos.size() > 0;
+    }
+
+
 }
